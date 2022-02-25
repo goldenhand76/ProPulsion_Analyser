@@ -1,0 +1,19 @@
+﻿<Application
+    x:Class="ProPulsion_Analyser.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProPulsion_Analyser">
+    <Application.Resources>
+        <AcrylicBrush x:Key="CustomAcrylicDark"
+                      BackgroundSource="HostBackdrop"
+                      TintColor="Gray"
+                      TintOpacity="0.6"
+                      FallbackColor="Black"/>
+        <AcrylicBrush x:Key="CustomAcrylicLight"
+                      BackgroundSource="HostBackdrop"
+                      TintColor="White"
+                      TintOpacity="0.6"
+                      FallbackColor="White"/>
+    </Application.Resources>
+
+</Application>

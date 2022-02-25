@@ -1,0 +1,540 @@
+﻿<Page
+    x:Class="ProPulsion_Analyser.TurboFan"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProPulsion_Analyser"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="Grid">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger  MinWindowHeight="1000"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Grid.H.Height"
+                            Value="900"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="900"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Grid.H.Height"
+                            Value="800"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="800"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Grid.H.Height"
+                            Value="700"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="700"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Grid.H.Height"
+                            Value="600"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="600"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Grid.H.Height"
+                            Value="500"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        <Grid.Background>
+            <ImageBrush ImageSource="Assets/TurboFan2.jpg" Stretch="UniformToFill" Opacity="0.2"/>
+        </Grid.Background>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="H"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Select Type" FontSize="48" Margin="0,0,0,20" HorizontalAlignment="Center"/>
+                <GridView HorizontalAlignment="Center" >
+                    <RadioButton Name="Seprate" Content="Seprate exhust" GroupName="Type" Checked="RadioButton_Checked" IsChecked="True"/>
+                    <RadioButton Name="Mixed" Content="Mixed exhust" GroupName="Type" Checked="RadioButton_Checked"/>
+                </GridView>
+
+                <TextBlock Text="Diffuser" FontSize="50" FontFamily="adobe garamond pro" HorizontalAlignment="Center" Margin="0,20,0,20"/>
+                <GridView HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox x:Name="M_V_0" SelectionChanged="M_V_0_SelectionChanged" FontSize="24" Height="50">
+                            <ComboBoxItem Content="M" IsSelected="True"/>
+                            <ComboBoxItem Content="V"/>
+                        </ComboBox>
+                        <TextBox Name="M_zero"  Text="0.88" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                        <TextBlock Name="par1" Text="Mach" FontSize="11" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="36" Text="P"/>
+                        <TextBox Name="P_zero" Text="15" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                        <TextBlock Text="Kpa" FontSize="11" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="36" Text="T"/>
+                        <TextBox FontSize="24" Name="T_zero" Text="-40" Width="100" Margin="10,0,0,0"/>
+                        <TextBlock Text="k" FontSize="11" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox x:Name="PI_ett_d" FontFamily="SWGrekc" FontSize="24" Height="50">
+                            <ComboBoxItem FontFamily="SWGrekc" Content="&#x0070;" IsSelected="True"/>
+                            <ComboBoxItem FontFamily="SWGrekc" Content="&#x0068;"/>
+                        </ComboBox>
+                        <TextBox Name="PI_d" FontSize="24" Text="0.995" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </GridView>
+
+                <TextBlock Text="Fan" FontSize="50" FontFamily="adobe garamond pro" HorizontalAlignment="Center" Margin="0,40,0,20"/>
+                <GridView Name="fan_Seprated" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0070;"/>
+                        <TextBox Name="PI_f"  Text="1.6" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                        <TextBlock Margin="0,0,65,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="36" Text="e"/>
+                        <TextBox Name="e_f" Text="0.9" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0061;"/>
+                        <TextBox FontSize="24" Name="alpha_f" Text="8.0" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0070;"/>
+                        <TextBlock FontSize="14" VerticalAlignment="Bottom" Text="n"/>
+                        <TextBox Name="PI_fn" FontSize="24" Text="0.95" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </GridView>
+
+                <GridView Name="fan_Mixed" HorizontalAlignment="Center" Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0070;"/>
+                        <TextBox Text="1.6" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                        <TextBlock Margin="0,0,65,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="36" Text="e"/>
+                        <TextBox Text="0.9" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </GridView>
+
+                <TextBlock Text="Compressor" FontFamily="adobe garamond pro" FontSize="50" HorizontalAlignment="Center" Margin="0,40,0,20"/>
+                <GridView HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0067;"/>
+                        <TextBox Name="gamma_zero" FontSize="24" Text="1.4" Width="100" Margin="10,0,0,0"/>
+                        <TextBlock Margin="0,0,65,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <RichTextBlock FontSize="36">
+                            <Paragraph FontFamily="Palatino Linotype">
+                                C
+                                <Run Typography.Variants="Subscript">p</Run>
+                            </Paragraph>
+                        </RichTextBlock>
+                        <TextBox Name="Cp_c" Text="1004" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                        <TextBlock Text="J/kg.K" FontSize="11" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0070;"/>
+                        <TextBox Name="PI_c" Text="40" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="36" Text="e"/>
+                        <TextBox Name="e_c" Text="0.9" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </GridView>
+
+                <TextBlock Text="Burner" FontSize="50" FontFamily="adobe garamond pro" HorizontalAlignment="Center" Margin="0,40,0,20"/>
+                <GridView HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0074;"/>
+                        <TextBox Name="ta_landa" Text="8" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                        <TextBlock Margin="0,0,65,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <RichTextBlock FontSize="36">
+                            <Paragraph FontFamily="Palatino Linotype">
+                                Q
+                                <Run Typography.Variants="Subscript">R</Run>
+                            </Paragraph>
+                        </RichTextBlock>
+                        <TextBox Name="Q_R" Text="42000" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                        <TextBlock Text="Kj/Kg" FontSize="11" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0068;"/>
+                        <TextBox Name="etta_b" Text="0.992" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0070;"/>
+                        <TextBox Name="PI_b" Text="0.95" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </GridView>
+
+                <TextBlock Text="Turbine" FontFamily="adobe garamond pro" FontSize="50" HorizontalAlignment="Center" Margin="0,40,0,20"/>
+                <GridView HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0067;"/>
+                        <TextBox Name="gamma_t" Text="1.33" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                        <TextBlock Margin="0,0,60,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <RichTextBlock FontSize="36">
+                            <Paragraph FontFamily="Palatino Linotype">
+                                C
+                                <Run Typography.Variants="Subscript">p</Run>
+                            </Paragraph>
+                        </RichTextBlock>
+                        <TextBox Name="Cp_t" Text="1152" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                        <TextBlock Text="J/kg.K" FontSize="11" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0068;"/>
+                        <TextBox Name="etta_m" Text="0.95" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock FontSize="36" Text="e"/>
+                        <TextBox Name="e_t" Text="0.85" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </GridView>
+
+                <TextBlock Name="Mixer_text" Visibility="Collapsed" Text="Mixer" FontFamily="adobe garamond pro" FontSize="50" HorizontalAlignment="Center" Margin="0,40,0,20"/>
+                <GridView Name="Mixer_grid" Visibility="Collapsed" HorizontalAlignment="Center" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0070;"/>
+                        <TextBox Name="PI_Mix" Text="0.98" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </GridView>
+
+                <TextBlock Name="AfterBurner" Text="AfterBurner" FontFamily="adobe garamond pro" FontSize="50" HorizontalAlignment="Center" Margin="0,40,0,20"/>
+                <ToggleSwitch  Margin="100,0,0,0" HorizontalAlignment="Center" IsOn="True" x:Name="AB_toggle" Toggled="AB_toggle_Toggled"/>
+                <GridView Name="AB_view" Visibility="Visible" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Margin="31">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0074;"/>
+                        <TextBox Name="ta_landa_AB" Text="11" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <RichTextBlock FontSize="36">
+                            <Paragraph FontFamily="Palatino Linotype">
+                                Q
+                                <Run Typography.Variants="Subscript">R</Run>
+                            </Paragraph>
+                        </RichTextBlock>
+                        <TextBox Name="QR_AB" Text="42000" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                        <TextBlock Text="KJ/Kg" FontSize="11" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0068;"/>
+                        <TextBox Name="etta_AB" Text="0.98" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0070;"/>
+                        <TextBox Name="PI_AB" Text="0.93" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0067;"/>
+                        <TextBox Name="gamma_AB" Text="1.3" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <RichTextBlock FontSize="36">
+                            <Paragraph FontFamily="Palatino Linotype">
+                                C
+                                <Run Typography.Variants="Subscript">p</Run>
+                            </Paragraph>
+                        </RichTextBlock>
+                        <TextBox Name="Cp_AB" Text="1243" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                        <TextBlock Text="J/kg.K" FontSize="11" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </GridView>
+
+                <GridView Name="AB_view_off" Visibility="Collapsed" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0070;"/>
+                        <TextBox Name="PI_AB_off" Text="0.93" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </GridView>
+
+                <TextBlock Text="Nozzele" FontFamily="adobe garamond pro" FontSize="50" HorizontalAlignment="Center" Margin="0,40,0,20"/>
+                <GridView HorizontalAlignment="Center" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="SWGrekc" FontSize="36" Text="&#x0070;"/>
+                        <TextBox Name="PI_n" Text="0.98" FontSize="24" Width="100" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </GridView>
+               
+                <Button Name="Calculate" Background="Transparent" IsTabStop="False" HorizontalAlignment="Center" Margin="0,50,0,30" Click="Calculate_Click">
+                    <Image Source="Assets/submit.png" Stretch="UniformToFill" Width="200"/>
+                </Button>
+                <ProgressRing Name="Progress" Width="80" Height="80"/>
+                <Image Name="cry" Visibility="Collapsed" Source="Assets/cry.png" Width="60" Height="60" Stretch="UniformToFill"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                    <GridView Name="Zero" Visibility="Collapsed">
+                        <StackPanel Orientation="Vertical" >
+                            <TextBlock HorizontalAlignment="Center" Text="Zero" FontSize="36" Margin="30,0,30,30"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Tt0 = " FontSize="18"/>
+                                <TextBlock Name="Tt_0" FontSize="18"/>
+                                <TextBlock Text="k" FontSize="11" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Pt0 = " FontSize="18"/>
+                                <TextBlock Name="Pt_0" FontSize="18"/>
+                                <TextBlock Text="Kpa" FontSize="11" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="V0 = " FontSize="18"/>
+                                <TextBlock Name="V_zero" FontSize="18"/>
+                                <TextBlock Text="m/s" FontSize="11" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GridView>
+
+                    <GridView Name="Intake" Visibility="Collapsed">
+                        <StackPanel Orientation="Vertical" >
+                            <TextBlock HorizontalAlignment="Center" Text="Intake" FontSize="36" Margin="30,0,30,30"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Tt2 = " FontSize="18"/>
+                                <TextBlock Name="Tt_2" FontSize="18"/>
+                                <TextBlock Text="k" FontSize="11" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Pt2 = " FontSize="18"/>
+                                <TextBlock Name="Pt_2" FontSize="18"/>
+                                <TextBlock Text="Kpa" FontSize="11" Margin="5,0,0,0"/>
+
+                            </StackPanel>
+                        </StackPanel>
+                    </GridView>
+
+                    <GridView  Name="Compressor" Visibility="Collapsed">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center" Text="Compressor" FontSize="36" Margin="30,0,30,30"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Tt3 = " FontSize="18"/>
+                                <TextBlock Name="Tt_3" FontSize="18"/>
+                                <TextBlock Text="k" FontSize="11" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Pt3 = " FontSize="18"/>
+                                <TextBlock Name="Pt_3" FontSize="18"/>
+                                <TextBlock Text="Kpa" FontSize="11" Margin="5,0,0,0"/>
+
+                            </StackPanel>
+                        </StackPanel>
+                    </GridView>
+
+
+                    <GridView Name="Burner" Visibility="Collapsed">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center" Text="Burner" FontSize="36" Margin="30,0,30,30"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Tt4 = " FontSize="18"/>
+                                <TextBlock Name="Tt_4" FontSize="18"/>
+                                <TextBlock Text="k" FontSize="11" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Pt4 = " FontSize="18"/>
+                                <TextBlock Name="Pt_4" FontSize="18"/>
+                                <TextBlock Text="Kpa" FontSize="11" Margin="5,0,0,0"/>
+
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="f = " FontSize="18"/>
+                                <TextBlock Name="f" FontSize="18"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GridView>
+
+                    <GridView Name="Turbine" Visibility="Collapsed">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center" Text="Turbine" FontSize="36" Margin="30,0,30,30"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Tt5 = " FontSize="18"/>
+                                <TextBlock Name="Tt_5" FontSize="18"/>
+                                <TextBlock Text="k" FontSize="11" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Pt5 = " FontSize="18"/>
+                                <TextBlock Name="Pt_5" FontSize="18"/>
+                                <TextBlock Text="Kpa" FontSize="11" Margin="5,0,0,0"/>
+
+                            </StackPanel>
+                        </StackPanel>
+                    </GridView>
+
+                    <GridView Name="Nozzle" Visibility="Collapsed">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center" Text="Nozzle" FontSize="36" Margin="30,0,30,30"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Tt9 = " FontSize="18"/>
+                                <TextBlock Name="Tt_9" FontSize="18"/>
+                                <TextBlock Text="k" FontSize="11" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Pt9 = " FontSize="18"/>
+                                <TextBlock Name="Pt_9" FontSize="18"/>
+                                <TextBlock Text="Kpa" FontSize="11" Margin="5,0,0,0"/>
+
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="V9 act = " FontSize="18"/>
+                                <TextBlock Name="V_9act" FontSize="18"/>
+                                <TextBlock Text="m/s" FontSize="11" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="V9 eff = " FontSize="18"/>
+                                <TextBlock Name="V_9eff" FontSize="18"/>
+                                <TextBlock Text="m/s" FontSize="11" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GridView>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <GridView Name="Fan" Visibility="Collapsed">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center" Text="Fan" FontSize="36" Margin="30,0,30,30"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Tt13 = " FontSize="18"/>
+                                <TextBlock Name="Tt_13" FontSize="18"/>
+                                <TextBlock Text="k" FontSize="11" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Pt13 = " FontSize="18"/>
+                                <TextBlock Name="Pt_13" FontSize="18"/>
+                                <TextBlock Text="Kpa" FontSize="11" Margin="5,0,0,0"/>
+
+                            </StackPanel>
+                        </StackPanel>
+                    </GridView>
+
+                    <GridView Name="Fan_n" Visibility="Collapsed">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center" Text="Fan Nozzele" FontSize="36" Margin="30,0,30,30"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Tt19 = " FontSize="18"/>
+                                <TextBlock Name="Tt_19" FontSize="18"/>
+                                <TextBlock Text="k" FontSize="11" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Pt19 = " FontSize="18"/>
+                                <TextBlock Name="Pt_19" FontSize="18"/>
+                                <TextBlock Text="Kpa" FontSize="11" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="V19 act = " FontSize="18"/>
+                                <TextBlock Name="V_19act" FontSize="18"/>
+                                <TextBlock Text="m/s" FontSize="11" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="V19 eff = " FontSize="18"/>
+                                <TextBlock Name="V_19eff" FontSize="18"/>
+                                <TextBlock Text="m/s" FontSize="11" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GridView>
+                </StackPanel>
+                <TextBlock Name="Performance" Text="Performance Parameters" Visibility="Collapsed" FontWeight="Bold" HorizontalAlignment="Center" FontSize="48" Margin="0,20,0,50"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,50">
+                    <GridView  Name="sp_thrust" Visibility="Collapsed" >
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center" Text="Specific Thrust" FontSize="36" Margin="30,0,30,30"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Fan : " FontSize="18"/>
+                                <TextBlock Name="Specific_Thrust_fan" FontSize="18"/>
+                                <TextBlock Name="error0" FontSize="12" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Core : " FontSize="18"/>
+                                <TextBlock Name="Specific_Thrust_core" FontSize="18"/>
+                                <TextBlock Name="error1" FontSize="12" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Ratio : " FontSize="18" Margin="0,0,0,10"/>
+                                <TextBlock Name="Ratio" FontSize="18"/>
+                                <TextBlock Name="error11" FontSize="12" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="fan/total : " FontSize="18"/>
+                                <TextBlock Name="Percent1" FontSize="18"/>
+                                <TextBlock Text="%"/>
+                                <TextBlock Name="error12" FontSize="12" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="core/total : " FontSize="18"/>
+                                <TextBlock Name="Percent2" FontSize="18"/>
+                                <TextBlock Text="%"/>
+                                <TextBlock Name="error13" FontSize="12" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                        
+                    </GridView>
+                    <GridView Name="sfc" Visibility="Collapsed">
+                        <StackPanel Orientation="Vertical" >
+                            <TextBlock HorizontalAlignment="Center" Text="TSFC" FontSize="36" Margin="30,0,30,30"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Name="TSFC" FontSize="18"/>
+                                <TextBlock Text="%"/>
+                                <TextBlock Name="error2" FontSize="12" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GridView>
+                    <GridView Name="ther_eff" Visibility="Collapsed">
+                        <StackPanel  Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center" Text="Thermal eff" FontSize="36" Margin="30,0,30,30"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Name="Thermal_eff" FontSize="18"/>
+                                <TextBlock Text="%"/>
+                                <TextBlock Name="error3" FontSize="12" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GridView>
+                    <GridView Name="pro_eff"  Visibility="Collapsed">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center" Text="Propulsive eff" FontSize="36" Margin="30,0,30,30"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Name="Propulsive_eff" FontSize="18"/>
+                                <TextBlock Text="%"/>
+                                <TextBlock Name="error4" FontSize="12" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GridView>
+                    <GridView Name="pro_eff2" Visibility="Collapsed">
+                        <StackPanel  Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center" Text="Overal eff" FontSize="36" Margin="30,0,30,30"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Name="overal_eff" FontSize="18"/>
+                                <TextBlock Text="%"/>
+                                <TextBlock Name="error5" FontSize="12" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GridView>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

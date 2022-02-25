@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="ProPulsion_Analyser.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProPulsion_Analyser"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush x:Name="MainPagePic" Stretch="UniformToFill" ImageSource="Assets/MainPage.jpg"/>
+        </Grid.Background>
+        <RelativePanel>
+            <Button Background="Black" Name="Hamburger_Button" Click="Hamburger_Button_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Foreground="Cyan" FontSize="50"/>
+        </RelativePanel>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="56,0,0,0" >
+            <Frame Name="NewFrame">
+
+            </Frame>
+        </StackPanel>
+        <SplitView Grid.Column="0" Grid.Row="1" Name="MySplitView" DisplayMode="CompactOverlay" OpenPaneLength="290" CompactPaneLength="70" HorizontalAlignment="Left">
+            <SplitView.Pane>
+                <ListBox Background="Black" Name="MyBox" PointerExited="MyBox_PointerExited" SelectionChanged="MyBox_SelectionChanged">
+                    <ListBoxItem Name="TurboJetItem">
+                        <StackPanel Name="TurboJet_panel" Orientation="Horizontal" PointerEntered="TurboJet_panel_PointerEntered">
+                            <Image Source="/Assets/TurboJet2.png" Width="50" Stretch="Uniform"/>
+                            <TextBlock Text="TurboJet" FontFamily="Incised901 NdIt BT" VerticalAlignment="Center" FontSize="24" Margin="30,0,0,0"/>
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem Name="TurboFanItem">
+                        <StackPanel Name="TurboFan_panel" Orientation="Horizontal" PointerEntered="TurboFan_panel_PointerEntered">
+                            <Image Source="/Assets/TurboFan2.png" Width="50"/>
+                            <TextBlock Text="TurboFan" FontFamily="Incised901 NdIt BT" VerticalAlignment="Center" FontSize="24" Margin="30,0,0,0"/>
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem Name="TurboPropItem">
+                        <StackPanel Name="TurboProp_panel" Orientation="Horizontal" PointerEntered="TurboProp_panel_PointerEntered">
+                            <Image Source="/Assets/TurboProp.png" Width="50"/>
+                            <TextBlock Text="TurboProp" FontFamily="Incised901 NdIt BT" VerticalAlignment="Center" FontSize="24" Margin="30,0,0,0"/>
+                        </StackPanel>
+                    </ListBoxItem>
+                </ListBox>
+            </SplitView.Pane>
+        </SplitView>
+
+
+    </Grid>
+</Page>
